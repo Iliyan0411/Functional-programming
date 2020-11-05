@@ -50,8 +50,6 @@
 lst2
 (cons (car lst1) (concat (cdr lst1) lst2))))
 
-(concat '(1 2 3) '(4 5 6))
-
 
 ;Problem 7:
 
@@ -62,6 +60,15 @@ lst2
         (helper (cdr lst) (cons (car lst) rlst))))
   (helper lst '()))
 
+
+;List-size
+
+(define (size l)
+  (define (helper i l)
+    (if (null? l)
+        i
+        (helper (+ i 1) (cdr l))))
+  (helper 0 l))
 
 
 
