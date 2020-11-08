@@ -1,1 +1,1 @@
-Programs from FPR seminar, tests and homeworks.
+Programs from FP seminar, tests and homeworks.
