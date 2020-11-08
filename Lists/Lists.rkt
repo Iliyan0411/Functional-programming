@@ -29,10 +29,10 @@
 
 ;Problem 4:
 
-(define (delete-el x lst)
+(define (delete-first x lst)
   (cond [(null? lst) `()]
         [(= x (car lst)) (cdr lst)]
-        [else (cons (car lst) (delete-el x (cdr lst)))]))
+        [else (cons (car lst) (delete-first x (cdr lst)))]))
 
 
 ;Problem 5:
@@ -60,6 +60,13 @@ lst2
         (helper (cdr lst) (cons (car lst) rlst))))
   (helper lst '()))
 
+
+;Poblem 8:
+
+(define (build-lst x lst)
+    (cond [(null? lst) '()]
+          [(= (car lst) x) (cons x (build-lst x (cdr lst)))]
+          [else (build-lst x (cdr lst))]))
 
 ;List-size
 
