@@ -11,6 +11,20 @@
         [(to-low? a) (+ a (sum-numbers (+ a 1) b))]
         [else (sum-numbers (+ a 1) b)]))
 
+;Problem 2
+(define (bigger-elements el l)
+  (define (helper counter l)
+    (cond [(null? l) (list el counter)]
+          [(< el (car l)) (helper (+ counter 1) (cdr l))]
+          [else (helper counter (cdr l))]))
+  (helper 0 l))
+
+(define (num-bigger-elements l)
+  (define (helper l result)
+    (if (null? l)
+        (reverse result)
+        (helper (cdr l) (cons (bigger-elements (car l) l) result))))
+  (helper l '()))
 
 ;Problem 4
 (define (repeater str)
