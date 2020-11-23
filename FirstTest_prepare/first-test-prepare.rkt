@@ -84,6 +84,16 @@
              (helper (drop xs (length cur-ord-pre)) cur-ord-pre)]
           [else (helper (drop xs (length cur-ord-pre)) max-subxs)]))
   (helper xs '()))
+  
+  
+  ;Problem 7
+(define (good? x list-pred)
+    (cond [(null? list-pred) #t]
+          [(not ((car list-pred) x)) #f]
+          [else (good? x (cdr list-pred))]))
+
+(define (where list-elements list-predicates)
+  (filter (λ (x) (good? x list-predicates)) list-elements))
 
 
 
