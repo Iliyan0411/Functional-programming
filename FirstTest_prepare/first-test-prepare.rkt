@@ -26,6 +26,23 @@
         (helper (cdr l) (cons (bigger-elements (car l) l) result))))
   (helper l '()))
 
+
+;Problem 3
+ (define (switch-func f g x n)
+    (cond [(= n 0) x]
+          [(= (remainder n 2) 0) (g(switch-func f g x (- n 1)))]
+          [else (f(switch-func f g x (- n 1)))]))
+
+
+(define (switch-sum f g n)
+  (λ (x)
+    (define (helper count res)
+      (if (= count 0)
+          res
+          (helper (- count 1) (+ res (switch-func f g x count)))))
+    (helper n 0)))
+
+
 ;Problem 4
 (define (repeater str)
   (λ (count glue)
