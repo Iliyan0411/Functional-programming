@@ -30,4 +30,5 @@
 (factorize 13) ; test_4
 (factorize 123) ; test_5
 (factorize 152) ; test_6
+(factorize 144) ; test_7
 
