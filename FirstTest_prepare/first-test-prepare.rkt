@@ -96,15 +96,10 @@
   (filter (λ (x) (good? x list-predicates)) list-elements))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+;Problem 8
+(define (set-union l1 l2)
+  (define (helper result list)
+    (cond [(null? list) (sort result <)]
+          [(memq (car list) result) (helper result (cdr list))]
+          [else (helper (cons (car list) result) (cdr list))]))
+  (helper '() (append l1 l2)))
