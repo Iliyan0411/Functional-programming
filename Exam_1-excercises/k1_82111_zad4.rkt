@@ -1,17 +1,18 @@
 #lang racket
 
-(define (corr-pos? l count)
-  (cond [(= count 0) #t]
-        [(= (car l) 0) (corr-pos? (cdr l) (- count 1))]
-        [else #f]))
+(define (lenght l)
+  (if (null? l)
+      0
+      (+ 1 (lenght (cdr l)))))
 
 
 (define (triangular? mat)
-  (define (helper mat count corr-pos?)
+  (define (helper mat count)
     (cond [(null? mat) #t]
-          [(corr-pos? (car mat) count) (helper (cdr mat) (+ count 1) corr-pos?)]
+          [(= (lenght (filter (λ (x) (= x 0)) (take (car mat) count))) count) (helper (cdr mat) (+ count 1))]
           [else #f]))
-  (helper mat 0 corr-pos?))
+  (helper mat 0))
+
 
 
 (triangular? '((1 2 3)
