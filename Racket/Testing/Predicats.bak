@@ -1,0 +1,6 @@
+#lang racket
+
+(define (derive f eps)
+  (λ (x) (/ (- (f (+ x eps)) - (f x)) eps)))
+
+(define (f x) (+ (* x x)  (* 3 x)))
