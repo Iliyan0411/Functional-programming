@@ -94,7 +94,7 @@ numDivisors :: Int -> Int
 numDivisors n = helper (n-1) 0
     where
         helper d count
-            | d <= 1 = count
+            | d < 1 = count
             | n `mod` d == 0 = helper (d-1) (count+1)
             | otherwise = helper (d-1) count
 
