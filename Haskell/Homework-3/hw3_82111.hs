@@ -61,9 +61,9 @@ main = do
     print (encode "aaaaaaaaaaaabbb") -- -> "12a3b"
     print (encode "aabbb") -- -> "aa3b"
 
+    print "----------------"
+
     print "====== Problem_2 ======"
     print (decode "12a3b") -- -> "aaaaaaaaaaaabbb"
     print (decode "a3b") -- -> "abbb"
     print (decode "aa3b") -- -> "aabbb"
-
-    
