@@ -8,6 +8,8 @@ main = do
     print (merge [1,4,5,8] [2,3,10,11])
     print (insert [1,2,4,5] 3)
     print (insertionSort [5,3,2,4,7,8,9,6,54,4])
+    print(f (* 5))
+    print(myCompose'' (\x -> x+1) (\x -> x ^ 2) 2)
 
 
 
@@ -79,3 +81,17 @@ insertionSort xs = helper xs []
         helper xs result = if null xs
                            then result
                            else helper (tail xs) (insert result (head xs))
+
+
+-- Lambda functions
+f :: (Int -> Int) -> Int
+f func = func 2
+
+myCompose :: (a -> b) -> (c -> a) -> (c -> b)
+myCompose f g x = f (g x)
+
+myCompose' :: (a -> b) -> (c -> a) -> (c -> b)
+myCompose' f g = \x -> f(g x)
+
+myCompose'' :: (a -> b) -> (c -> a) -> (c -> b)
+myCompose'' f g = f . g
