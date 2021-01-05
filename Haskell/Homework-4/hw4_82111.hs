@@ -27,8 +27,11 @@ getAverageBalance (accounts, persons) pred = helper persons 0 0
                                            (div + snd(wantedAcc (head persons)))
             | otherwise = helper (tail persons) result div
                 where
+                    -- връща двойка от сумата на всички сметки на дадения човек
+                    -- и броя на сметките, които той притежава
                     wantedAcc person = (sum pAcc, fromIntegral (length pAcc))
                         where
+                            -- връща списък от сметките, които даденият човек има в банката 
                             pAcc = [thd3 acc | acc <- accounts, snd3 acc == fst3 person]
 
 ----- b)
@@ -41,8 +44,13 @@ averageBalanceOfCities ([], [_]) [_] = 0
 averageBalanceOfCities ([_], [_]) [] = 0
 averageBalanceOfCities (accounts, persons) cities = average 
     where
+        -- списък на всички хора от подадените като аргумент градове
         wantedPersons = [prs | prs <- persons, length (filter (== thd3 prs) cities) > 0]
+
+        -- списък на парите във всяка от сметките на хората от wantedPersons
         allAcc = [thd3 acc | acc <- accounts, length (filter (\x -> fst3 x==snd3 acc) wantedPersons)>0]
+        
+        -- сумата на парите във всички сметки от allAcc радзелена на броя сметки в allAcc
         average = sum allAcc / fromIntegral (length allAcc)
 
 ----------------------------------------------------------------------------------------------------
