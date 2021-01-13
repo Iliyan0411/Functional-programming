@@ -133,6 +133,33 @@ orderedTree (Node (a, b) (Node (a1, b1) st11 st12) (Node (a2, b2) st21 st22)) = 
                                                                                 orderedTree (Node (a2, b2) st21 st22)
 
 
+-- zad9 
+-- Да се напише функция, която пресмята средноаритметичната сумата от стойностите на върховете, които се намират на четни нива.
+
+data Tree = Empty | Tnode Int Tree Tree
+
+averageSumEvenLevels :: Tree -> Double
+averageSumEvenLevels t = if b == 0
+                         then 0
+                         else a / b
+    where
+        a = fromIntegral (sumEvenLevels t 0)
+        b = fromIntegral (countNodesOfEvenLvl t 0)
+
+        sumEvenLevels Empty _ = 0
+        sumEvenLevels (Tnode n t1 t2) k = if even k
+                                          then n + sumEvenLevels t1 (k+1) + sumEvenLevels t2 (k+1)
+                                          else sumEvenLevels t1 (k+1) + sumEvenLevels t2 (k+1)
+
+        countNodesOfEvenLvl Empty _ = 0
+        countNodesOfEvenLvl (Tnode n t1 t2) k = if even k
+                                                then 1 + countNodesOfEvenLvl t1 (k+1) + countNodesOfEvenLvl t2 (k+1)
+                                                else countNodesOfEvenLvl t1 (k+1) + countNodesOfEvenLvl t2 (k+1)
+
+
+
+
+
 ----------------------------------------
 store1, store2 :: [Product]
 store1=[("bread",1),("milk",2.5),("lamb",10),("cheese",5),("butter",2.3)]
@@ -153,6 +180,19 @@ tree2 = Node (3.0,10.0) (Node (5.0,8.0) (Node (6.0,7.0) NullT NullT)
                                         (Node (7.0,9.0) NullT NullT))       
                         (Node (2.0,12.0) NullT
                                         (Node (1.0,15.0) NullT NullT))
+
+tree3 :: Tree
+tree3 = Tnode 2 
+            (Tnode 7
+                (Tnode 2 Empty Empty)
+                (Tnode 6
+                    (Tnode 5 Empty Empty)
+                    (Tnode 11 Empty Empty)))
+            (Tnode 5
+                Empty
+                (Tnode 9
+                    (Tnode 4 Empty Empty)
+                    Empty))
 
 
 main :: IO()
@@ -193,3 +233,6 @@ main = do
     -- zad8
     -- print (orderedTree tree1)
     -- print (orderedTree tree2)
+
+    -- zad9
+    -- print(averageSumEvenLevels tree3)
