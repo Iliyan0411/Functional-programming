@@ -1,17 +1,16 @@
 main :: IO()
 main = do
-    print (isTriangular [[1,2,3], [0,5,7], [7,0,3]])
-    print (divisors 15)
-    print (primesInRange 5 20)
-    print (prodSumDiv [6,7,8,9] 2)
-    print (isSorted [1,2,3,4,5,5])
-    print (merge [1,4,5,8] [2,3,10,11])
-    print (insert [1,2,4,5] 3)
-    print (insertionSort [5,3,2,4,7,8,9,6,54,4])
-    print(f (* 5))
-    print(myCompose'' (\x -> x+1) (\x -> x ^ 2) 2)
-
-
+    -- print (isTriangular [[1,2,3], [0,5,7], [7,0,3]])
+    -- print (divisors 15)
+    -- print (primesInRange 5 20)
+    -- print (prodSumDiv [6,7,8,9] 2)
+    -- print (isSorted [1,2,3,4,5,5])
+    -- print (merge [1,4,5,8] [2,3,10,11])
+    -- print (insert [1,2,4,5] 3)
+    -- print (insertionSort [5,3,2,4,7,8,9,6,54,4])
+    -- print(f (* 5))
+    -- print(myCompose'' (\x -> x+1) (\x -> x ^ 2) 2)
+    print 4
 
 
 -- zad1
