@@ -1,4 +1,4 @@
-import Data.Char
+import Data.Char ( ord )
 
 
 -- zad1
@@ -101,15 +101,9 @@ reduceStr str = helper str []
 
 
 -- zad6
--- maximize :: [a -> a] -> (a -> a)
--- maximize [] = error "Empty list"
--- maximize (f : functions) = helper (f : functions) f
---     where
---         helper [] maxFoo = maxFoo
---         helper (f : functions) maxFoo = 
---             if abs f > abs maxFoo
---                 then helper functions f
---                 else helper functions maxFoo
+maximize :: (Ord a, Num a) => [a -> a] -> (a -> a)
+maximize fs x = snd (maximum [(abs (f x), f x) | f <- fs])
+
 
 -- zad7
 inverseFun :: (Int -> Int) -> (Int -> Int) -> Int -> Int -> Bool
@@ -157,9 +151,6 @@ averageSumEvenLevels t = if b == 0
                                                 else countNodesOfEvenLvl t1 (k+1) + countNodesOfEvenLvl t2 (k+1)
 
 
-
-
-
 ----------------------------------------
 store1, store2 :: [Product]
 store1=[("bread",1),("milk",2.5),("lamb",10),("cheese",5),("butter",2.3)]
@@ -167,8 +158,6 @@ store2=[("bread",1),("cheese",2.5),("bread",1),("cheese",5),("butter",2.3)]
 
 points1 :: [(Double, Double, Double)]
 points1 = [(0,0,0), (4,2,2), (2,1,6), (1,3,2)]
-
--- fn = maximize [(\x -> x*x*x),(\x -> x+1)]
 
 tree1, tree2 :: BTree
 tree1 = Node (3.0,10.0) (Node (5.0,8.0) (Node (6.0,7.0) NullT NullT)
@@ -193,6 +182,7 @@ tree3 = Tnode 2
                 (Tnode 9
                     (Tnode 4 Empty Empty)
                     Empty))
+
 
 
 main :: IO()
@@ -221,8 +211,8 @@ main = do
     -- print (reduceStr "abcCBagLl")
 
     -- zad 6
-    -- print (fn 0.5) -- --> 1.5
-    -- print (fn -2) -- --> 8
+    print (maximize [\x -> x * x * x, (+ 1)] 0.5) -- --> 1.5
+    print (maximize [\x -> x * x * x, (+ 1)] (-2)) -- --> 8
 
     -- zad7
     -- print (inverseFun (\x -> x+1) (\x -> x-1) 5 10) -- --> True
@@ -236,3 +226,5 @@ main = do
 
     -- zad9
     -- print(averageSumEvenLevels tree3)
+
+    
