@@ -1,4 +1,5 @@
 import Data.Char ( ord )
+import Data.List ( sort )
 
 
 -- zad1
@@ -151,6 +152,20 @@ averageSumEvenLevels t = if b == 0
                                                 else countNodesOfEvenLvl t1 (k+1) + countNodesOfEvenLvl t2 (k+1)
 
 
+-- zad10
+kthMaxMin :: [Int] -> Int -> Int
+kthMaxMin [] = error "No such a number"
+kthMaxMin xs = \k -> helper sortedList 1 k
+    where
+        sortedList = reverse (sort xs)
+
+        helper [] _ _ = error "No such a number"
+        helper (x:xs) prev count
+            | x < 0 && x /= prev && count == 1 = x
+            | x < 0 && x /= prev = helper xs x (count-1)
+            | otherwise = helper xs prev count
+
+
 ----------------------------------------
 store1, store2 :: [Product]
 store1=[("bread",1),("milk",2.5),("lamb",10),("cheese",5),("butter",2.3)]
@@ -211,8 +226,8 @@ main = do
     -- print (reduceStr "abcCBagLl")
 
     -- zad 6
-    print (maximize [\x -> x * x * x, (+ 1)] 0.5) -- --> 1.5
-    print (maximize [\x -> x * x * x, (+ 1)] (-2)) -- --> 8
+    -- print (maximize [\x -> x * x * x, (+ 1)] 0.5) -- --> 1.5
+    -- print (maximize [\x -> x * x * x, (+ 1)] (-2)) -- --> 8
 
     -- zad7
     -- print (inverseFun (\x -> x+1) (\x -> x-1) 5 10) -- --> True
@@ -227,4 +242,8 @@ main = do
     -- zad9
     -- print(averageSumEvenLevels tree3)
 
-    
+    -- zad10
+    print (kthMaxMin [1, 2, 3, 4, -5, 6, 7, -2, -1, 0] 2)
+    print (kthMaxMin [1, 2, 3, 4, -5, 6, 7, -2, -1, 0] 3)
+    print (kthMaxMin [-1, 0, -1, 0, -2, 3, 1, -1] 2)
+    print (kthMaxMin [-1, 0, -1, 0, -2, 3, 1, -1] 3)
